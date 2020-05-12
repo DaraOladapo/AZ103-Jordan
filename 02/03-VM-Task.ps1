@@ -1,7 +1,7 @@
 # Create a fully configured virtual machine
 # Variables for common values
 $resourceGroup = "myResourceGroup"
-$location = "westeurope"
+$location = "westus"
 $vmName = "myVM"
 
 # Create user object
