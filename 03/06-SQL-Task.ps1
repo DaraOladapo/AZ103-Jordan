@@ -1,12 +1,12 @@
 # Connect-AzAccount
 # The SubscriptionId in which to create these objects
-$SubscriptionId = ''
+#$SubscriptionId = ''
 # Set the resource group name and location for your server
 $resourceGroupName = "myResourceGroup-$(Get-Random)"
 $location = "westeurope"
 # Set an admin login and password for your server
 $adminSqlLogin = "SqlAdmin"
-$password = "ChangeYourAdminPassword1"
+$password = "P@ssw0rd1234"
 # Set server name - the logical server name has to be unique in the system
 $serverName = "server-$(Get-Random)"
 # The sample database name
@@ -17,23 +17,23 @@ $storageContainerName = "importcontainer$(Get-Random)"
 # BACPAC file name
 $bacpacFilename = "sample.bacpac"
 # The ip address range that you want to allow to access your server
-$startip = "0.0.0.0"
-$endip = "0.0.0.0"
+$startip = "197.211.61.0"
+$endip = "197.211.61.255"
 
 # Set subscription 
-Set-AzContext -SubscriptionId $subscriptionId 
+#Set-AzContext -SubscriptionId $subscriptionId 
 
 # Create a resource group
-$resourcegroup = New-AzResourceGroup -Name $resourceGroupName -Location $location
+New-AzResourceGroup -Name $resourceGroupName -Location $location
 
 # Create a storage account 
-$storageAccount = New-AzStorageAccount -ResourceGroupName $resourceGroupName `
+New-AzStorageAccount -ResourceGroupName $resourceGroupName `
     -AccountName $storageAccountName `
     -Location $location `
     -Type "Standard_LRS"
 
 # Create a storage container 
-$storageContainer = New-AzStorageContainer -Name $storageContainerName `
+New-AzStorageContainer -Name $storageContainerName `
     -Context $(New-AzStorageContext -StorageAccountName $storageAccountName `
         -StorageAccountKey $(Get-AzStorageAccountKey -ResourceGroupName $resourceGroupName -StorageAccountName $storageAccountName).Value[0])
 
@@ -48,13 +48,13 @@ Set-AzStorageBlobContent -Container $storagecontainername `
         -StorageAccountKey $(Get-AzStorageAccountKey -ResourceGroupName $resourceGroupName -StorageAccountName $storageAccountName).Value[0])
 
 # Create a new server with a system wide unique server name
-$server = New-AzSqlServer -ResourceGroupName $resourceGroupName `
+New-AzSqlServer -ResourceGroupName $resourceGroupName `
     -ServerName $serverName `
     -Location $location `
     -SqlAdministratorCredentials $(New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $adminSqlLogin, $(ConvertTo-SecureString -String $password -AsPlainText -Force))
 
 # Create a server firewall rule that allows access from the specified IP range
-$serverFirewallRule = New-AzSqlServerFirewallRule -ResourceGroupName $resourceGroupName `
+New-AzSqlServerFirewallRule -ResourceGroupName $resourceGroupName `
     -ServerName $serverName `
     -FirewallRuleName "AllowedIPs" -StartIpAddress $startIp -EndIpAddress $endIp
 
