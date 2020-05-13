@@ -1,0 +1,38 @@
+/*
+@TargetNode='localhost'
+@GeneratedBy=v-daolad
+@GenerationDate=05/13/2020 22:27:40
+@GenerationHost=NG-V-DAOLAD
+*/
+
+instance of MSFT_EnvironmentResource as $MSFT_EnvironmentResource1ref
+{
+ResourceID = "[Environment]CreatePathEnvironmentVariable";
+ ModuleName = "PsDesiredStateConfiguration";
+ Ensure = "Present";
+ Name = "TestPathEnvironmentVariable";
+ SourceInfo = "C:\\Projects\\AZ103-Jordan\\04\\02-HelloWorld.ps1::10::9::Environment";
+ Value = "TestValue";
+ Path = True;
+
+ModuleVersion = "1.0";
+ ConfigurationName = "MyDscConfiguration";
+};
+instance of OMI_ConfigurationDocument
+
+                    {
+ Version="2.0.0";
+
+                        MinimumCompatibleVersion = "1.0.0";
+
+                        CompatibleVersionAdditionalProperties= {"Omi_BaseResource:ConfigurationName"};
+
+                        Author="v-daolad";
+
+                        GenerationDate="05/13/2020 22:27:40";
+
+                        GenerationHost="NG-V-DAOLAD";
+
+                        Name="MyDscConfiguration";
+
+                    };
