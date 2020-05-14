@@ -1,7 +1,7 @@
-Install-Module 'PSDscResources'
+#Install-Module 'PSDscResources'
 param
 (
-    [string[]]$ComputerName='localhost'
+    [string[]]$ComputerName=$env:COMPUTERNAME
 )
 #Import-DscResource -ModuleName 'PSDscResources'
 
@@ -19,4 +19,4 @@ Configuration MyDscConfiguration {
     }
 }
 
-MyDscConfiguration  -OutputPath:"C:\Configs\EnvVar"
+MyDscConfiguration -OutputPath:"C:\Configs\EnvVar"

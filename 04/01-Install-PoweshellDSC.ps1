@@ -1,3 +1,3 @@
 Install-Module 'PSDscResources'
 
-#Install-Module 'PSDscResources' -Verbose
+#Install-Module 'PSDscResources' -Verbose=
